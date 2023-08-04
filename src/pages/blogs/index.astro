@@ -12,9 +12,10 @@ const data = await getBlogs();
 ---
 
 <Layout title="Blogs">
-    <div class="flex">
+    <div class="relative z-[-1]">
         <BlogList listData={data} />
-        <Banner>
+        <Banner client:scroll>
+          <div>Something is going on here</div>
         </Banner>
     </div>
 </Layout>

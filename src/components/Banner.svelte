@@ -2,11 +2,11 @@
     export let image = '';
 </script>
 
-<div class="sticky top-0">
+<aside class="fixed top-[72px] right-16 z-[-1]">
     <slot>
         <div>
             <img src={image} alt="">
         </div>
     </slot>
     <slot name="additional-content" />
-</div>
+</aside>
