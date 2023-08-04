@@ -9,10 +9,10 @@ const directives = () => {
   return {
     name: 'integration',
     hooks: {
-      "astro:config:setup": ({addClientDirective}: any) => {
+      "astro:config:setup": ({addClientDirective}) => {
         addClientDirective({
           name: "scroll",
-          entrypoint: "./src/directives/scrollDirectives.ts",
+          entrypoint: "./src/directives/scrollDirective.ts",
         });
     }}
   }
