@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import BlogList from "../../components/ListData.vue";
+import Banner from "../../components/Banner.svelte";
+import { mapUrl } from "../../api/index";
+
+const getBlogs = async () => {
+  const res = await fetch(mapUrl("blogs"));
+  return res.json();
+};
+const data = await getBlogs();
+---
+
+<Layout title="Blogs">
+    <div class="flex">
+        <BlogList listData={data} />
+        <Banner>
+        </Banner>
+    </div>
+</Layout>
