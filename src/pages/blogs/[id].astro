@@ -1,0 +1,27 @@
+---
+import { mapUrl } from "../../api";
+import Layout from "../../layouts/Layout.astro";
+import type { BlogsData } from "../../types/Blog";
+
+export async function getStaticPaths() {
+    let blogs: BlogsData[] = await fetch(mapUrl(`blogs`)).then(res => res.json());
+    return blogs.map(blog => {
+        return {
+            params: {
+                id: blog.id
+            },
+            props: {
+                blog
+            }
+        }
+    })
+}
+
+const {id} = Astro.params;
+const {blog} = Astro.props;
+---
+
+<Layout>
+<p>{id}</p>
+<p>{blog.title}</p>
+</Layout>

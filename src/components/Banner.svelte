@@ -1,11 +1,12 @@
-<script context="module" lang="ts">
-    export let image = '';
+<script lang="ts">
+    export let src = '';
+    export let classes = '';
 </script>
 
-<aside class="fixed top-[72px] right-16 z-[-1]">
+<aside class={classes}>
     <slot>
-        <div>
-            <img src={image} alt="">
+        <div class="">
+            <img {src} width=144 height=500 alt="">
         </div>
     </slot>
     <slot name="additional-content" />
