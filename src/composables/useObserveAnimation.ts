@@ -1,3 +1,5 @@
+import { onMounted, onUnmounted, ref } from "vue";
+
 export function observeAnimation() {
   const animatedElements = document.querySelectorAll(".hidden-item");
   const observer = new IntersectionObserver((entries) => {

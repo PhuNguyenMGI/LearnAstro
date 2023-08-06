@@ -21,7 +21,7 @@ const {id} = Astro.params;
 const {blog} = Astro.props;
 ---
 
-<Layout>
+<Layout title={blog.title}>
 <p>{id}</p>
 <p>{blog.title}</p>
 </Layout>

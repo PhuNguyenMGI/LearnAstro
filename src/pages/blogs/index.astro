@@ -12,12 +12,12 @@ const data = await getBlogs();
 ---
 
 <Layout title="Blogs">
-    <div class="relative z-0">
-        <BlogList listData={data} />
-        <Banner classes="fixed top-[72px] right-16 z-[-1]" client:scroll src="/samples/banner.jpg">
-          <template slot="additional-content">
-            <div>Check out today!</div>
-          </template>
+    <div class="mx-auto max-w-7xl relative z-0 lg:flex gap-7">
+        <BlogList class="lg:w-9/12" listData={data} />
+        <Banner classes="hidden lg:block lg:w-3/12" client:scroll src="/samples/banner.jpg">
+          <div class="border-4 border-dashed border-orange-600 mb-4 p-4" slot="additional-content">
+            The named slot that disappears after 5 seconds after scrolling because of custom scroll directive triggers the script to execute
+          </div>
         </Banner>
     </div>
 </Layout>

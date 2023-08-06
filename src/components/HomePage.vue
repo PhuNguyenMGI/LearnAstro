@@ -1,12 +1,12 @@
 <template>
-  <div class="">
+  <div class="overflow-hidden">
     <h1
       class="hidden-item grid place-items-center content-center min-h-screen text-5xl font-bold"
     >
       WELCOME
     </h1>
     <div
-      class="hidden-item flex flex-col w-full justify-center sm:ml-[30%] space-y-6 min-h-screen"
+      class="hidden-item flex flex-col w-full justify-center items-center space-y-6 min-h-screen"
     >
       <div class="flex space-x-6">
         <img

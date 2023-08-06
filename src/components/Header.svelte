@@ -4,10 +4,10 @@
 			<a href="/">Home</a>
 		</li>
 		<li class="text-[#333]">
-			<a href="/about">About</a>
+			<a href="/blogs">Blogs</a>
 		</li>
 		<li class="text-[#333]">
-			<a href="/blogs">Blogs</a>
+			<a href="/about">About</a>
 		</li>
 	</ul>
 </header>
