@@ -3,6 +3,8 @@ import { mapUrl } from "../../api";
 import Layout from "../../layouts/Layout.astro";
 import type { BlogsData } from "../../types/Blog";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
     let blogs: BlogsData[] = await fetch(mapUrl(`blogs`)).then(res => res.json());
     return blogs.map(blog => {

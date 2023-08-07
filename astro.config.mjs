@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
-
 import vue from "@astrojs/vue";
+
+import netlify from "@astrojs/netlify/functions";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,15 +11,19 @@ export default defineConfig({
   integrations: [svelte(), tailwind(), vue(), {
     name: 'integration',
     hooks: {
-      "astro:config:setup": ({ addClientDirective, injectScript, addWatchFile }) => {
+      "astro:config:setup": ({
+        addClientDirective,
+        injectScript,
+        addWatchFile
+      }) => {
         addClientDirective({
           name: "scroll",
-          entrypoint: "./src/directives/scrollDirective.ts",
+          entrypoint: "./src/directives/scrollDirective.ts"
         });
-        injectScript('page-ssr', 'import "./src/assets/base.css";');
         addWatchFile('/package.json');
         addWatchFile('/src/assets/base.css')
       }
     }
   }],
-})
+  adapter: netlify()
+});
