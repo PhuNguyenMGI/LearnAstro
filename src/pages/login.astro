@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const status = Astro.response.status;
+if (status === 301) {
+  console.log("Session ended");
+}
+---
+
+<Layout title="Login">
+  <div class="mx-auto max-w-7xl relative z-0 lg:flex gap-7">
+    <h1>Astro <span class="text-gradient">Middleware authorizing user session</span></h1>
+    <form action="/api/login" method="POST">
+      <label>
+        Username: <input
+          type="text"
+          minlength="1"
+          id="username"
+          name="username"
+        />
+      </label>
+      <label>
+        Password: <input
+          type="password"
+          minlength="1"
+          id="password"
+          name="password"
+        />
+      </label>
+
+      <button>Submit</button>
+    </form>
+  </div>
+</Layout>

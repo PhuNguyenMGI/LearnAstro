@@ -3,17 +3,24 @@ import Layout from "../../layouts/Layout.astro"
 import BlogList from "../../components/ListData.vue";
 import Banner from "../../components/Banner.svelte";
 import { mapUrl } from "../../api/index";
+import axios from "axios";
+import {get} from "./../api/methods";
+import type { EndpointOutput } from "astro";
 
 const getBlogs = async () => {
-  const res = await fetch(mapUrl("blogs"));
+  const res: Response | EndpointOutput = await get(Astro);
+  if (res.status) {
+    //do something
+  }  
   return res.json();
 };
 const data = await getBlogs();
+const currentPath = Astro.url.pathname;
 ---
 
 <Layout title="Blogs">
     <div class="mx-auto max-w-7xl relative z-0 lg:flex gap-7">
-        <BlogList class="lg:w-9/12" listData={data} />
+        <BlogList class="lg:w-9/12" listData={data} currentPath={currentPath} />
         <Banner classes="hidden lg:block lg:w-3/12" client:scroll src="/samples/banner.jpg">
           <div class="border-4 border-dashed border-orange-600 mb-4 p-4" slot="additional-content">
             The named slot that disappears after 5 seconds after scrolling because of custom scroll directive triggers the script to execute

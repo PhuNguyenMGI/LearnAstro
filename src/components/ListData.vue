@@ -3,15 +3,15 @@
     <!-- If have no slot, that mean it's default blog list -->
     <slot>
       <div v-for="item in props.listData" :key="`item_#${item.id}`" class="flex gap-6">
-        <a :href="`blogs/${item.id}`" class="flex-shrink-0">
+        <a :href="`${String(currentPath)}/${item.id}`" class="flex-shrink-0">
           <img
-            :src="item.image"
-            :alt="item.alttext"
+            :src="item?.image"
+            :alt="item?.alttext"
             class="w-32 h-32 object-cover rounded-xl"
           />
         </a>
         <div>
-          <a :href="`blogs/${item.id}`" class="font-bold text-xl">{{ item.title }}</a>
+          <a :href="`${String(currentPath)}/${item.id}`" class="font-bold text-xl">{{ item.title }}</a>
           <p class="line-clamp-3">{{ item.content }}</p>
         </div>
       </div>
@@ -24,6 +24,7 @@ import type { BlogsData } from "../types/Blog";
 
 interface IProps {
   listData: Array<BlogsData>;
+  currentPath: string;
 }
 
 const props = withDefaults(defineProps<IProps>(),
