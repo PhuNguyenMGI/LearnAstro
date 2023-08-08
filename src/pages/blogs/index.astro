@@ -4,7 +4,6 @@ import BlogList from "../../components/ListData.vue";
 import Banner from "../../components/Banner.svelte";
 import {get} from "./../api/methods";
 import type { EndpointOutput } from "astro";
-import Modal from "../../components/Modal.svelte";
 
 const getBlogs = async () => {
   const res: Response | EndpointOutput = await get(Astro);
@@ -26,9 +25,4 @@ const currentPath = Astro.url.pathname;
           </div>
         </Banner>
     </div>
-    <Modal client:load>
-      <p class="text-black">
-        Congratulations
-      </p>
-    </Modal>
 </Layout>

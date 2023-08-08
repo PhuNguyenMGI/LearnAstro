@@ -1,5 +1,5 @@
 <script type="module" lang="ts">
-  import { isOpenModal } from './../store/sampleStore';
+  import { isOpenModal } from '../store/sample-store';
 
   const toggleModal = () => {
     isOpenModal.set(!$isOpenModal);
