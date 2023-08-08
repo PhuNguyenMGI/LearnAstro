@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import { isOpenModal } from "../store/sampleStore";
+  import { isOpenModal } from "../store/sample-store";
 
   const dispatch = createEventDispatcher();
 
