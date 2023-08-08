@@ -40,7 +40,14 @@
 <script setup lang="ts">
 import { nextTick, onMounted } from "vue";
 import { observeAnimation } from "../composables/useObserveAnimation";
+import { useStore } from "@nanostores/vue";
+import { isOpenModal } from "../store/sampleStore";
 
+const $isOpenModal = useStore(isOpenModal);
+
+const onToggleModal = () => {
+  isOpenModal.set(!$isOpenModal);
+}
 onMounted(async () => {
   await nextTick();
   observeAnimation();

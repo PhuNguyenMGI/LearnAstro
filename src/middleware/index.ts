@@ -1,69 +1,42 @@
 import { defineMiddleware, sequence } from "astro/middleware";
-import htmlMinifier from "html-minifier";
+// import htmlminifier from "html-minifier-terser";
 
 const limit = 50;
 
-const loginInfo = {
-  token: "",
-  currentTime: 0,
-};
-
-export const minifier = defineMiddleware(async (context, next) => {
-  const response = await next();
-  // check if the response is returning some HTML
-  if (response.headers.get("content-type") === "text/html") {
-    let headers = response.headers;
-    let html = await response.text();
-    let newHtml = htmlMinifier.minify(html, {
-      removeAttributeQuotes: true,
-      collapseWhitespace: true,
-    });
-    return new Response(newHtml, {
-      status: 200,
-      headers,
-    });
-  }
-  return response;
-});
+//Build time error with this library
+// export const minifier = defineMiddleware(async (context, next) => {
+//   const response = await next();
+//   // check if the response is returning some HTML
+//   if (response.headers.get("content-type") === "text/html") {
+//     let headers = response.headers;
+//     let html = await response.text();
+//     let newHtml = await htmlminifier.minify(html, {
+//       removeAttributeQuotes: true,
+//       collapseWhitespace: true,
+//     });
+//     return new Response(newHtml, {
+//       status: 200,
+//       headers,
+//     });
+//   }
+//   return response;
+// });
 
 const validation = defineMiddleware(async (context, next) => {
   if (context.request.url.endsWith("/admin")) {
-    if (loginInfo.currentTime) {
-      const difference = new Date().getTime() - loginInfo.currentTime;
-      if (difference > limit) {
-        console.log("hit threshold");
-        loginInfo.token = "";
-        loginInfo.currentTime = 0;
-        return context.redirect("/login");
-      }
-    }
-    // we naively check if we have a token
-    if (loginInfo.token && loginInfo.token === "loggedIn") {
-      // we fill the locals with user-facing information
+    
+    if (context.cookies.get("authToken").value === "loggedIn") {
+      console.log(context.cookies.get("authToken").value);
       context.locals.user = {
         name: "Phu",
         surname: "Thien",
       };
       return await next();
     } else {
-      loginInfo.token = "";
-      loginInfo.currentTime = 0;
       return context.redirect("/login");
-    }
-  } else if (context.request.url.endsWith("/api/login")) {
-    const response = await next();
-    // the login endpoint will return to us a JSON with username and password
-    const data = await response.json();
-    // we naively check if username and password are equals to some string
-    if (data.username === "phunguyen" && data.password === "1234567") {
-      // we store the token somewhere outside of locals because the `locals` object is attached to the request
-      // and when doing a redirect, we lose that information
-      loginInfo.token = "loggedIn";
-      loginInfo.currentTime = new Date().getTime();
-      return context.redirect("/admin");
     }
   }
   return next();
 });
 
-export const onRequest = sequence(validation, minifier);
+export const onRequest = sequence(validation);

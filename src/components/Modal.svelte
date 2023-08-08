@@ -24,8 +24,6 @@
   </div>
 {/if}
 
-<button on:click={toggleModal}>Open Modal</button>
-
 <style>
   .modal {
     position: fixed;
@@ -43,5 +41,6 @@
     background-color: white;
     padding: 1rem;
     border-radius: 4px;
+    color: black !important;
   }
 </style>

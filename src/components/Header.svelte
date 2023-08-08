@@ -1,3 +1,11 @@
+<script type="module" lang="ts">
+  import { isOpenModal } from './../store/sampleStore';
+
+  const toggleModal = () => {
+    isOpenModal.set(!$isOpenModal);
+  }
+</script>
+
 <header
   class="h-[72px] flex items-center w-full sticky top-0 z-[1] bg-[#ccc] mb-5"
 >
@@ -12,8 +20,11 @@
       <a href="/about">About</a>
     </li>
     <li class="ml-auto">
-		<a href="/admin">Admin</a>
-	</li>
+		  <button on:click={toggleModal} class="text-[#333]">Open store modal</button>
+	  </li>
+    <li>
+		  <a href="/admin">Admin</a>
+	  </li>
   </ul>
 </header>
 
