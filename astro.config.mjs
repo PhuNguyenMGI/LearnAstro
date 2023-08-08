@@ -18,7 +18,7 @@ export default defineConfig({
       }) => {
         addClientDirective({
           name: "scroll",
-          entrypoint: "./src/directives/scrollDirective.ts"
+          entrypoint: "./src/directives/scroll-directive.ts"
         });
         addWatchFile('/package.json');
         addWatchFile('/src/assets/base.css')

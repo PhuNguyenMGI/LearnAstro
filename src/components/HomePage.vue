@@ -41,7 +41,7 @@
 import { nextTick, onMounted } from "vue";
 import { observeAnimation } from "../composables/useObserveAnimation";
 import { useStore } from "@nanostores/vue";
-import { isOpenModal } from "../store/sampleStore";
+import { isOpenModal } from "../store/sample-store";
 
 const $isOpenModal = useStore(isOpenModal);
 
